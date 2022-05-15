@@ -23,9 +23,9 @@ namespace WindowsFormsApp
 
             return sur;
         }
-        public static void Save()
+        public static void Save(int count)
         {
-            string path = @"Reports\" + StaticClass.count++ + ".txt";
+            string path = @"Reports\" + count + ".txt";
             using (StreamWriter w = new StreamWriter(path, false, Encoding.GetEncoding(1251)))
             {
                 w.WriteLine(Question.Sur.Name);

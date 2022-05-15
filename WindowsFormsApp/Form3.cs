@@ -13,7 +13,7 @@ namespace WindowsFormsApp
         private void Build()
         {
             if (StaticClass.cheak)
-                Survey.Save();
+                Survey.Save(StaticClass.count);
             label1.Text += Question.Sur.Name + "\"";
             for (int i = 0; i < Answers.Ans.Length; ++i)
                 dataGridView1.Rows.Add(i+1, Answers.Ans[i]);
