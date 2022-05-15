@@ -9,6 +9,6 @@
             Type = type;
             AnsOp = ansop;
         }
-        public override string[] OnlyOptions(){return AnsOp;}
+        public override string[] OnlyOptions() {return AnsOp;}
     }
 }

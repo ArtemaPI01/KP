@@ -5,23 +5,24 @@ namespace WindowsFormsApp
 {
     public partial class Form1 : Form
     {
+        private readonly Survey[] sur = Survey.CreateSur();
         public Form1()
         {
             InitializeComponent();
             Build();
         }
-        private void Build(){comboBox1.DataSource = StaticClass.sur;}
-        private void button1_Click(object sender, EventArgs e){Close();}
-        private void button2_Click(object sender, EventArgs e)
+        private void Build() {comboBox1.DataSource = sur; }
+        private void Button1_Click(object sender, EventArgs e) {Close();}
+        private void Button2_Click(object sender, EventArgs e)
         {
-            StaticClass.index = comboBox1.SelectedIndex;
-            StaticClass.quest = Question.ChoiceSurvey(StaticClass.sur[comboBox1.SelectedIndex]);
+            Question.Sur = sur[comboBox1.SelectedIndex];
+            Answers.Quest = Question.ChoiceSurvey();
             StaticClass.cheak = checkBox1.Checked;
             Close();
-            var th = new Thread(open);
+            var th = new Thread(Open);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
-        public void open(object obj){Application.Run(new Form2());}
+        public void Open(object obj){Application.Run(new Form2());}
     }
 }

@@ -3,13 +3,14 @@ namespace WindowsFormsApp
 {
     public abstract class Question
     {
+        public static Survey Sur { get; set; }
         public string Text { get; set; }
         public int Type { get; set; }
-        public virtual bool Enter(string str){return true;}
+        public virtual bool Enter(string str) {return true;}
         public virtual string[] OnlyOptions() {return null;}
-        public static Question[] ChoiceSurvey(Survey obj)
+        public static Question[] ChoiceSurvey()
         {
-            string[] lines = File.ReadAllLines(@"Questions\" + obj.FileName);
+            string[] lines = File.ReadAllLines(@"Questions\" + Sur.FileName);
             Question[] questions = new Question[lines.Length];
             for (int i = 0; i < lines.Length; i++)
             {

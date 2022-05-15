@@ -13,12 +13,12 @@ namespace WindowsFormsApp
         private void Build()
         {
             if (StaticClass.cheak)
-                Survey.Save(StaticClass.sur[StaticClass.index]);
-            label1.Text += StaticClass.sur[StaticClass.index].Name + "\"";
-            for (int i = 0; i < StaticClass.answers.Length; ++i)
-                dataGridView1.Rows.Add(i+1, StaticClass.answers[i]);
+                Survey.Save();
+            label1.Text += Question.Sur.Name + "\"";
+            for (int i = 0; i < Answers.Ans.Length; ++i)
+                dataGridView1.Rows.Add(i+1, Answers.Ans[i]);
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Close();
             var th = new Thread(Back);

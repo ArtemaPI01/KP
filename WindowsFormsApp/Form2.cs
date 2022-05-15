@@ -11,39 +11,38 @@ namespace WindowsFormsApp
             InitializeComponent();
             Build();
         }
-        private Dictionary<int, UserControl1> dynamicTextboxes = new Dictionary<int, UserControl1>();
+        private readonly Dictionary<int, UserControl1> dynamicTextboxes = new Dictionary<int, UserControl1>();
         private void Build()
         {
-            label1.Text = StaticClass.sur[StaticClass.index].Name;
-            for (int i = 0; i < StaticClass.quest.Length;i++)
+            label1.Text = Question.Sur.Name;
+            for (int i = 0; i < Answers.Quest.Length;i++)
             {
                 var pn = new UserControl1();
-                pn.Build(StaticClass.quest[i], i+1);
+                pn.Build(Answers.Quest[i], i+1);
                 flowLayoutPanel1.Controls.Add(pn);
                 dynamicTextboxes[i] = pn;
             }
-            
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Close();
             var th = new Thread(Back);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }
-        private void Back(object obj){Application.Run(new Form1());}
-        private void button2_Click(object sender, EventArgs e)
+        private void Back(object obj) {Application.Run(new Form1());}
+        private void Button2_Click(object sender, EventArgs e)
         {
-            StaticClass.answers = new string[StaticClass.quest.Length];
+            Answers.Ans = new string[Answers.Quest.Length];
             int x = 0;
-            for (int i = 0; i < StaticClass.quest.Length; i++)
+            for (int i = 0; i < Answers.Quest.Length; i++)
             {
 
-                if (StaticClass.quest[i].Enter(dynamicTextboxes[i].GetAnswer))
+                if (Answers.Quest[i].Enter(dynamicTextboxes[i].GetAnswer))
                 {
                     dynamicTextboxes[i].Respect();
                     if (x == 0)
-                        StaticClass.answers[i] = dynamicTextboxes[i].GetAnswer;
+                        Answers.Ans[i] = dynamicTextboxes[i].GetAnswer;
                 }
                 else
                 {
@@ -59,6 +58,6 @@ namespace WindowsFormsApp
                 th.Start();
             }
         }
-        private void Next(object obj){Application.Run(new Form3());}
+        private void Next(object obj) {Application.Run(new Form3());}
     }
 }

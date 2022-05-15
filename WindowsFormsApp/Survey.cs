@@ -23,21 +23,14 @@ namespace WindowsFormsApp
 
             return sur;
         }
-        public static string[] CreateMenu(Survey[] sur)
-        {
-            string[] str = new string[sur.Length];
-            for (int i = 0; i < sur.Length; i++)
-                str[i] = sur[i].Name;
-            return str;
-        }
-        public static void Save(Survey obj)
+        public static void Save()
         {
             string path = @"Reports\" + StaticClass.count++ + ".txt";
             using (StreamWriter w = new StreamWriter(path, false, Encoding.GetEncoding(1251)))
             {
-                w.WriteLine(obj.Name);
-                for (int i = 0; i < StaticClass.answers.Length; i++)
-                    w.WriteLine(i + 1 + ") - " + StaticClass.answers[i]);
+                w.WriteLine(Question.Sur.Name);
+                for (int i = 0; i < Answers.Ans.Length; i++)
+                    w.WriteLine(i + 1 + ") - " + Answers.Ans[i]);
             }
         }
     }
